@@ -1,0 +1,128 @@
+<template>
+  <q-card class="auth-card">
+    <div class="auth-title">
+      Вход в личный кабинет
+    </div>
+    <q-input
+      v-model="email"
+      outlined
+      type="email"
+      label="Email"
+      class="auth-input"
+    />
+    <q-input
+      v-model="password"
+      outlined
+      :type="isPwd ? 'password' : 'text'"
+      label="Пароль"
+      class="auth-input"
+    >
+      <template v-slot:append>
+        <q-icon
+          :name="isPwd ? 'visibility_off' : 'visibility'"
+          class="cursor-pointer"
+          @click="isPwd = !isPwd"
+        />
+      </template>
+    </q-input>
+
+    <q-btn
+      unelevated
+      color="primary"
+      label="Войти"
+      class="auth-btn"
+      @click="auth"
+    />
+
+    <div
+      class="auth-forgot"
+      @click="$emit('onForgot')"
+    >
+      Забыли пароль?
+    </div>
+  </q-card>
+</template>
+
+<script>
+import Module from 'Auth/module';
+
+export default {
+  name: 'VueCardAuth',
+  data: () => ({
+    email: null,
+    password: null,
+    isPwd: true,
+    module: new Module(),
+  }),
+  methods: {
+    auth() {
+      this.module.$$gemit('notify', {
+        text: 'какой-то текст',
+      });
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.auth {
+    &-card {
+      width: 480px;
+      height: 436px;
+      border-radius: 10px;
+      background-color: #FFF;
+      margin: 0 auto;
+      position: relative;
+      top: 25%;
+    }
+
+    &-title {
+        font-family: Roboto;
+        font-size: 30px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        color: #424b5f;
+        margin-left: 36px;
+        padding-top: 30px;
+    }
+
+    &-input {
+      margin-top: 40px;
+      margin-left: 30px;
+      width: 420px;
+    }
+
+    &-input:first-child {
+      margin-top: 0px;
+    }
+
+    &-btn {
+      margin-top: 40px;
+      margin-left: 30px;
+      width: 420px;
+      height: 56px;
+      font-family: Roboto;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 6px;
+    }
+
+    &-forgot {
+      font-family: Roboto;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      color: #8894b4;
+      margin-top: 20px;
+      margin-left: 185px;
+      width: 110px;
+      cursor: pointer;
+    }
+
+    &-forgot:hover {
+      opacity: 0.7;
+    }
+}
+</style>

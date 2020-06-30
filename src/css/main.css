@@ -1,0 +1,24 @@
+@font-face {
+	font-family: "Roboto";
+	font-weight: normal;
+	font-style: normal;
+    src: url("../fonts/Roboto/Roboto-Black.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Roboto";
+	font-weight: bold;
+	font-style: normal;
+    src: url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Roboto-Regular";
+	font-weight: normal;
+	font-style: normal;
+    src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+.q-field__label {
+	font-family: Roboto-Regular;
+}
