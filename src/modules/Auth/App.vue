@@ -1,5 +1,5 @@
 <template>
-  <div id="ROOT">
+  <div id="root">
     <div class="auth-background">
       <card-forgot
         v-if="forgot"
@@ -25,7 +25,7 @@ import CardAuth from 'Auth/components/CardAuth.vue';
 import CardForgot from 'Auth/components/CardForgot.vue';
 
 export default {
-  el: '#ROOT',
+  el: '#root',
   name: 'VueAuth',
   components: {
     CardAuth, CardForgot,
@@ -46,7 +46,7 @@ export default {
 .auth {
     &-background {
       background-image: url("./images/background.jpg");
-      height: 100%;
+      height: 100vh;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;

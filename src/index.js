@@ -1,8 +1,8 @@
 import Config from './config';
-import './css/main.css';
+import './css/main.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
   console.info('version: ', Config.version);
   // eslint-disable-next-line
-    new Config.rootModule(Config);
+  new Config.rootModule(Config);
 });

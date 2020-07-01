@@ -1,11 +1,11 @@
 import Onedeck from 'onedeck';
-import App from 'Auth/App.vue';
+import App from 'MainPage/App.vue';
 import Vue from 'vue';
 
 /**
- * @moduel Auth
+ * @moduel MainPage
  */
-export default class Auth extends Onedeck.Module {
+export default class MainPage extends Onedeck.Module {
   init() {
     this.VueApp = new Vue(App);
   }
@@ -13,6 +13,6 @@ export default class Auth extends Onedeck.Module {
   destroy() {
     this.$$offAll();
     this.VueApp.$destroy();
-    document.getElementById('root').innerHTML = '';
+    document.getElementById('content').innerHTML = '';
   }
 }

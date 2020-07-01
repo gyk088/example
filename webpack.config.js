@@ -83,12 +83,12 @@ module.exports = {
                     }
                 }
             },
-            {
-                enforce: "pre",
-                test: /\.(js|vue|.jsx)$/,
-                loader: "eslint-loader",
-                exclude: /node_modules/
-            },
+            // {
+            //     enforce: "pre",
+            //     test: /\.(js|vue|.jsx)$/,
+            //     loader: "eslint-loader",
+            //     exclude: /node_modules/
+            // },
             {
                 test: /\.vue$/,
                 loader: "vue-loader"

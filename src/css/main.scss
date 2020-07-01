@@ -1,24 +1,38 @@
 @font-face {
 	font-family: "Roboto";
-	font-weight: normal;
-	font-style: normal;
     src: url("../fonts/Roboto/Roboto-Black.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: "Roboto";
-	font-weight: bold;
-	font-style: normal;
+	font-family: "Roboto-Bold";
+
     src: url("../fonts/Roboto/Roboto-Bold.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: "Roboto-Regular";
-	font-weight: normal;
-	font-style: normal;
     src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+body {
+	background-color: #f5f6fa;
 }
 
 .q-field__label {
 	font-family: Roboto-Regular;
 }
+
+.layout-menu {
+	&-item:hover {
+		.icon-menu {
+			fill: #4694dd;
+		}
+	}
+	.active {
+		.icon-menu {
+			fill: #4694dd;
+		}
+	}
+}
+
+

@@ -1,5 +1,6 @@
 import Onedeck from 'onedeck';
 import Notification from 'Notification/module';
+import Loader from 'Loader/module';
 
 /**
  * @module Root
@@ -7,6 +8,7 @@ import Notification from 'Notification/module';
 export default class Root extends Onedeck.RootModule {
   init() {
     this.Notification = new Notification();
+    this.Loader = new Loader();
 
     this.eventHandler();
   }
@@ -15,5 +17,21 @@ export default class Root extends Onedeck.RootModule {
     this.$$on('notify', (data) => {
       this.Notification.notify(data);
     });
+
+    this.$$on('loadingShow', () => {
+      this.Loader.show();
+    });
+
+    this.$$on('loadingHide', () => {
+      this.Loader.hide();
+    });
+  }
+
+  dispatcher() {
+    this.Loader.show();
+  }
+
+  mounted() {
+    setTimeout(() => this.Loader.hide(), 600);
   }
 }

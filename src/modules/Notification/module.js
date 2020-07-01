@@ -19,6 +19,7 @@ export default class Notification extends Onedeck.Module {
   notify(data) {
     Notify.create({
       position: 'top',
+      type: 'positive',
       timeout: data.time || NOTIFY_TIME,
       textColor: 'white',
       actions: [{ icon: 'close', color: 'white' }],

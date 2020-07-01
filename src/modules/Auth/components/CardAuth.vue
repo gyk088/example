@@ -3,37 +3,40 @@
     <div class="auth-title">
       Вход в личный кабинет
     </div>
-    <q-input
-      v-model="email"
-      outlined
-      type="email"
-      label="Email"
-      class="auth-input"
-    />
-    <q-input
-      v-model="password"
-      outlined
-      :type="isPwd ? 'password' : 'text'"
-      label="Пароль"
-      class="auth-input"
-    >
-      <template v-slot:append>
-        <q-icon
-          :name="isPwd ? 'visibility_off' : 'visibility'"
-          class="cursor-pointer"
-          @click="isPwd = !isPwd"
-        />
-      </template>
-    </q-input>
+    <form class="auth-form">
+      <q-input
+        v-model="email"
+        outlined
+        type="email"
+        label="Email"
+        class="auth-input"
+      />
+      <q-input
+        v-model="password"
+        outlined
+        :type="isPwd ? 'password' : 'text'"
+        label="Пароль"
+        class="auth-input"
+        autocomplete="on"
+      >
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            autocomplete="on"
+            @click="isPwd = !isPwd"
+          />
+        </template>
+      </q-input>
 
-    <q-btn
-      unelevated
-      color="primary"
-      label="Войти"
-      class="auth-btn"
-      @click="auth"
-    />
-
+      <q-btn
+        unelevated
+        color="primary"
+        label="Войти"
+        class="auth-btn"
+        @click="auth"
+      />
+    </form>
     <div
       class="auth-forgot"
       @click="$emit('onForgot')"
@@ -56,8 +59,8 @@ export default {
   }),
   methods: {
     auth() {
-      this.module.$$gemit('notify', {
-        text: 'какой-то текст',
+      this.module.$$rout({
+        path: '/main',
       });
     },
   },
@@ -123,6 +126,10 @@ export default {
 
     &-forgot:hover {
       opacity: 0.7;
+    }
+
+    &-form {
+      margin-top: 40px;
     }
 }
 </style>
