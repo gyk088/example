@@ -22,6 +22,9 @@ body {
 	font-family: Roboto-Regular;
 }
 
+.q-loading:before {
+	background-color: #85B8E9;
+}
 .layout-menu {
 	&-item:hover {
 		.icon-menu {
