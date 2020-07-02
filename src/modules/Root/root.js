@@ -28,6 +28,7 @@ export default class Root extends Onedeck.RootModule {
   }
 
   dispatcher() {
+    console.log(this.Loader);
     this.Loader.show();
   }
 
