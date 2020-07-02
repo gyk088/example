@@ -10,6 +10,8 @@
         type="email"
         label="Email"
         class="auth-input"
+        :class="{error: errorEmail}"
+        @focus="onFocus"
       />
       <q-input
         v-model="password"
@@ -18,6 +20,8 @@
         label="Пароль"
         class="auth-input"
         autocomplete="on"
+        :class="{error: errorPass}"
+        @focus="onFocus"
       >
         <template v-slot:append>
           <q-icon
@@ -48,6 +52,8 @@
 
 <script>
 import Module from 'Auth/module';
+import * as api from 'Auth/api';
+import to from 'await-to-js';
 
 export default {
   name: 'VueCardAuth',
@@ -55,13 +61,35 @@ export default {
     email: null,
     password: null,
     isPwd: true,
-    module: new Module(),
+    errorPass: false,
+    errorEmail: false,
   }),
   methods: {
-    auth() {
-      this.module.$$rout({
-        path: '/main',
-      });
+    async auth() {
+      const module = new Module();
+
+      const [err, res] = await to(api.auth(this.email, this.password));
+
+      if (err) {
+        this.errorPass = true;
+        this.errorEmail = true;
+
+        module.$$gemit('notify', {
+          type: 'negative',
+          text: 'Неправильно введен пароль или enail',
+          time: 1500,
+        });
+      } else {
+        console.log(res);
+        this.module.$$rout({
+          path: '/main',
+        });
+      }
+    },
+
+    onFocus() {
+      this.errorPass = false;
+      this.errorEmail = false;
     },
   },
 };

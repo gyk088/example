@@ -28,11 +28,11 @@
 </template>
 
 <script>
-import menuClose from 'Layout/images/menu-close.svg';
-import menuOpened from 'Layout/images/menu-opened.svg';
-import logo from 'Layout/images/logo.svg';
-import ava from 'Layout/images/ava.svg';
-import exit from 'Layout/images/exit.svg';
+import menuClose from 'Images/icon/menu-close.svg';
+import menuOpened from 'Images/icon/menu-opened.svg';
+import logo from 'Images/icon//logo.svg';
+import ava from 'Images/icon/ava.svg';
+import exit from 'Images/icon/exit.svg';
 
 import store from 'Layout/store';
 

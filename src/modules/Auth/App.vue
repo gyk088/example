@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import logo from 'Auth/images/logo-white.svg';
+import logo from 'Images/icon/logo-white.svg';
 
 import CardAuth from 'Auth/components/CardAuth.vue';
 import CardForgot from 'Auth/components/CardForgot.vue';
@@ -45,7 +45,7 @@ export default {
 <style lang="scss" scoped>
 .auth {
     &-background {
-      background-image: url("./images/background.jpg");
+      background-image: url("../../images/background.jpg");
       height: 100vh;
       background-position: center;
       background-repeat: no-repeat;

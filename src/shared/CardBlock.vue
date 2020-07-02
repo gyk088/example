@@ -1,22 +1,22 @@
 <template>
-  <div class="main-page-block">
-    <h2 class="main-page-block-title">
+  <div class="shared-block">
+    <h2 class="shared-block-title">
       {{ title }}
     </h2>
     <Card
       v-for="item in items"
       :key="item.id"
-      :title="item.title"
-      :icon="item.icon"
+      :item="item"
+      @click="cardClick"
     />
   </div>
 </template>
 
 <script>
-import Card from 'MainPage/components/Block/Card.vue';
+import Card from 'Shared/CardBlock/Card.vue';
 
 export default {
-  name: 'VueMainPageBlock',
+  name: 'ShardCardBlock',
   components: {
     Card,
   },
@@ -24,11 +24,16 @@ export default {
     title: String,
     items: Array,
   },
+  methods: {
+    cardClick(item) {
+      this.$emit('cardClick', item);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.main-page-block {
+.shared-block {
     background-color: #FFF;
     width: 100%;
     border-radius: 10px;
@@ -45,7 +50,7 @@ export default {
         margin-top: 20px;
     }
 }
-.main-page-block:last-child {
+.shared-block:last-child {
     margin-right: 20px;
     margin-left: 20px;
 }

@@ -6,14 +6,14 @@ import Loader from 'Loader/module';
  * @module Root
  */
 export default class Root extends Onedeck.RootModule {
-  init () {
+  init() {
     this.Notification = new Notification();
     this.Loader = new Loader();
 
     this.eventHandler();
   }
 
-  eventHandler () {
+  eventHandler() {
     this.$$on('notify', (data) => {
       this.Notification.notify(data);
     });
@@ -27,11 +27,11 @@ export default class Root extends Onedeck.RootModule {
     });
   }
 
-  dispatcher () {
+  dispatcher() {
     this.Loader.show();
   }
 
-  mounted () {
+  mounted() {
     setTimeout(() => this.Loader.hide(), 600);
   }
 }

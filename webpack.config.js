@@ -31,145 +31,169 @@ try {
     process.exit()
 }
 
-console.info(`\x1b[37m Project is running at \x1b[32m http://localhost:${DEV_PORT}/ \x1b[37m`)
-
 const PATHS = {
     src: path.resolve(__dirname, "src/"),
     dist: path.resolve(__dirname, "dist/"),
-    images: path.resolve(__dirname, "src/images/")
+    images: path.resolve(__dirname, "src/images/"),
+    shared: path.resolve(__dirname, "src/shared/"),
 }
 
-module.exports = {
-    entry: ["@babel/polyfill", "./src/index.js"],
-    output: {
-        filename: "[name].[hash].js",
-        path: PATHS.dist,
-    },
-    optimization: {
-        minimize: false,
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    name: 'vendors',
-                    test: /node_modules/,
-                    chunks: 'all',
-                    enforce: true,
+module.exports = env => {
+    if (env.server) {
+        console.info(`\x1b[37m Project is running at \x1b[32m http://localhost:${DEV_PORT}/ \x1b[37m`)
+    }
+
+    const rules = []
+    if (env.production || env.development) {
+        rules.push({
+            enforce: "pre",
+            test: /\.(js|vue|.jsx)$/,
+            loader: "eslint-loader",
+            exclude: /node_modules/
+        })
+    }
+
+    const optimization = {
+        minimize: false
+    }
+    if (env.production) {
+        optimization.minimize = true
+        console.info(`\x1b[32m Start Build Prodaction\x1b[37m`)
+    }
+
+    if (env.development) {
+        optimization.minimize = true
+        console.info(`\x1b[32m Start Build Development\x1b[37m`)
+    }
+
+    return {
+        entry: ["@babel/polyfill", "./src/index.js"],
+        output: {
+            filename: "[name].[hash].js",
+            path: PATHS.dist,
+        },
+        optimization: {
+            minimize: optimization.minimize,
+            splitChunks: {
+                cacheGroups: {
+                    vendor: {
+                        name: 'vendors',
+                        test: /node_modules/,
+                        chunks: 'all',
+                        enforce: true,
+                    }
                 }
             }
-        }
-    },
-    devtool: "source-map",
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        port: DEV_PORT,
-        historyApiFallback: false,
-        noInfo: true
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                include: PATHS.src,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env"],
-                        plugins: [
-                            ['@babel/plugin-syntax-dynamic-import'],
-                            ["@babel/plugin-proposal-class-properties", { loose: true }]
-                        ]
-                    }
-                }
-            },
-            // {
-            //     enforce: "pre",
-            //     test: /\.(js|vue|.jsx)$/,
-            //     loader: "eslint-loader",
-            //     exclude: /node_modules/
-            // },
-            {
-                test: /\.vue$/,
-                loader: "vue-loader"
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    "style-loader",
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "sass-loader"
-                ]
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    "style-loader",
-                    MiniCssExtractPlugin.loader,
-                    "css-loader"
-                ]
-            },
-            {
-                test: /\.(css$|scss$)/,
-                use: {
-                    loader: "postcss-loader",
-                    options: {
-                        plugins: () => [require('autoprefixer')]
-                    }
-                }
-            },
-            {
-                test: /\.(woff2?|eot|ttf|otf)$/,
-                use: [
-                    {
-                        loader: "url-loader",
+        },
+        devtool: "source-map",
+        devServer: {
+            contentBase: path.join(__dirname, "dist"),
+            compress: true,
+            port: DEV_PORT,
+            historyApiFallback: false,
+            noInfo: true
+        },
+        module: {
+            rules: [
+                ...rules,
+                {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    include: PATHS.src,
+                    use: {
+                        loader: "babel-loader",
                         options: {
-                            limit: 10 * 1024
+                            presets: ["@babel/preset-env"],
+                            plugins: [
+                                ['@babel/plugin-syntax-dynamic-import'],
+                                ["@babel/plugin-proposal-class-properties", { loose: true }]
+                            ]
                         }
                     }
-                ]
-            },
-            {
-                test: /\.(png|jpe?g|gif)$/,
-                use: [
-                    {
-                        loader: "file-loader",
+                },
+                {
+                    test: /\.vue$/,
+                    loader: "vue-loader"
+                },
+                {
+                    test: /\.scss$/,
+                    use: [
+                        "style-loader",
+                        MiniCssExtractPlugin.loader,
+                        "css-loader",
+                        "sass-loader"
+                    ]
+                },
+                {
+                    test: /\.css$/,
+                    use: [
+                        "style-loader",
+                        MiniCssExtractPlugin.loader,
+                        "css-loader"
+                    ]
+                },
+                {
+                    test: /\.(css$|scss$)/,
+                    use: {
+                        loader: "postcss-loader",
                         options: {
-                            name: "[name].[ext]",
-                            outputPath: "images"
+                            plugins: () => [require('autoprefixer')]
                         }
                     }
-                ]
-            },
-            {
-                test: /\.svg$/,
-                loader: 'svg-inline-loader'
+                },
+                {
+                    test: /\.(woff2?|eot|ttf|otf)$/,
+                    use: [
+                        {
+                            loader: "url-loader",
+                            options: {
+                                limit: 10 * 1024
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.(png|jpe?g|gif)$/,
+                    use: [
+                        {
+                            loader: "file-loader",
+                            options: {
+                                name: "[name].[ext]",
+                                outputPath: "images"
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.svg$/,
+                    loader: 'svg-inline-loader'
+                }
+            ]
+        },
+        resolve: {
+            alias: {
+                Shared: PATHS.shared,
+                Images: PATHS.images,
+                ...modules,
             }
+        },
+        plugins: [
+            new webpack.DefinePlugin({
+                API_PREFIX: JSON.stringify(API_PREFIX),
+                WSP_PREFIX: JSON.stringify(WSP_PREFIX),
+                GOOGLE_KEY: JSON.stringify(GOOGLE_KEY),
+                VERSION: JSON.stringify(version),
+                ROOT_PATH: JSON.stringify(ROOT_PATH),
+            }),
+            new MiniCssExtractPlugin({
+                filename: "style.[hash].css"
+            }),
+            new HtmlWebpackPlugin({
+                hash: true,
+                template: "./src/index.html",
+                filename: "index.html"
+            }),
+            new VueLoaderPlugin()
         ]
-    },
-    resolve: {
-        alias: {
-            Images: PATHS.images,
-            ...modules,
-        }
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            API_PREFIX: JSON.stringify(API_PREFIX),
-            WSP_PREFIX: JSON.stringify(WSP_PREFIX),
-            GOOGLE_KEY: JSON.stringify(GOOGLE_KEY),
-            VERSION: JSON.stringify(version),
-            ROOT_PATH: JSON.stringify(ROOT_PATH),
-        }),
-        new MiniCssExtractPlugin({
-            filename: "style.[hash].css"
-        }),
-        new HtmlWebpackPlugin({
-            hash: true,
-            template: "./src/index.html",
-            filename: "index.html"
-        }),
-        new VueLoaderPlugin()
-    ]
+    }
 };

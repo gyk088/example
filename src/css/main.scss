@@ -38,4 +38,12 @@ body {
 	}
 }
 
+.error {
+	.q-field__control:before {
+		border: solid 1px red;
+	}
 
+	.q-field__label {
+		color: red
+	}
+}
