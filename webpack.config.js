@@ -44,21 +44,21 @@ module.exports = env => {
     }
 
     const rules = []
-    if (env.production || env.development) {
-        rules.push({
-            enforce: "pre",
-            test: /\.(js|vue|.jsx)$/,
-            loader: "eslint-loader",
-            exclude: /node_modules/
-        })
-    }
+    // if (env.production || env.development) {
+    //     rules.push({
+    //         enforce: "pre",
+    //         test: /\.(js|vue|.jsx)$/,
+    //         loader: "eslint-loader",
+    //         exclude: /node_modules/
+    //     })
+    // }
 
     const optimization = {
         minimize: false
     }
     if (env.production) {
         optimization.minimize = true
-        console.info(`\x1b[32m Start Build Prodaction\x1b[37m`)
+        console.info(`\x1b[32m Start Build Production\x1b[37m`)
     }
 
     if (env.development) {
@@ -73,7 +73,7 @@ module.exports = env => {
             path: PATHS.dist,
         },
         optimization: {
-            minimize: optimization.minimize,
+            minimize: false,
             splitChunks: {
                 cacheGroups: {
                     vendor: {

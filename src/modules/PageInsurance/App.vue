@@ -1,9 +1,10 @@
 <template>
   <div id="content">
     <div class="insurance-page">
-      <Back
+      <Header
         title="Оформление страхового полиса"
-        @iconClick="back"
+        back
+        @onBack="onBack"
       />
       <div class="insurance-page-wrapper">
         <CostBlock />
@@ -13,24 +14,24 @@
 </template>
 
 <script>
-import Back from 'Shared/Back.vue';
+import Header from 'Shared/PageHeader.vue';
 
-import CostBlock from 'InsurancePage/components/CostBlock.vue';
-import Module from 'InsurancePage/module';
+import CostBlock from 'PageInsurance/components/CostBlock.vue';
+import Module from 'PageInsurance/module';
 
 export default {
   el: '#content',
-  name: 'VueInsurancePage',
+  name: 'VuePageInsurance',
   components: {
-    Back,
+    Header,
     CostBlock,
   },
   methods: {
-    back() {
+    onBack() {
       const module = new Module();
 
       module.$$rout({
-        path: '/mainPartner',
+        path: '/mainpartner',
       });
     },
   },

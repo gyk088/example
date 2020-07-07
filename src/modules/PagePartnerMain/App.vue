@@ -16,14 +16,16 @@
 import list1 from 'Images/icon/list1.svg';
 import list2 from 'Images/icon/list2.svg';
 import list3 from 'Images/icon/list3.svg';
-import list4 from 'Images/icon/list4.svg';
+import history from 'Images/icon/ic-history.svg';
+import addSale from 'Images/icon/ic-add-sale.svg';
+import addEvent from 'Images/icon/ic-add-insurance-event.svg';
 
 import Block from 'Shared/CardBlock.vue';
-import Module from 'MainPageAdmin/module';
+import Module from 'PagePartnerMain/module';
 
 export default {
   el: '#content',
-  name: 'VueMainPageAdmin',
+  name: 'VuePagePartnerMain',
   components: {
     Block,
   },
@@ -36,16 +38,23 @@ export default {
         items: [
           {
             id: 1,
-            title: 'Список продаж',
-            icon: list4,
+            title: 'Оформить продажу',
+            icon: addSale,
+            bold: true,
+            url: '/insurance',
           },
           {
             id: 2,
+            title: 'История продаж',
+            icon: history,
+          },
+          {
+            id: 3,
             title: 'Инструкция по оформлению продажи',
             icon: list3,
           },
           {
-            id: 3,
+            id: 4,
             title: 'Описание страховых продуктов',
             icon: list1,
           },
@@ -56,12 +65,18 @@ export default {
         title: 'Страховое событие',
         items: [
           {
-            id: 4,
+            id: 5,
+            title: 'Заявить о страховом событии',
+            icon: addEvent,
+            bold: true,
+          },
+          {
+            id: 6,
             title: 'Список страховых событий',
             icon: list2,
           },
           {
-            id: 5,
+            id: 7,
             title: 'Инструкция по оформлению страхового события',
             icon: list3,
           },

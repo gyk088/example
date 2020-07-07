@@ -1,18 +1,9 @@
 <template>
   <q-card class="auth-card">
     <div class="auth-title">
-      Вход в личный кабинет
+      Изменить  пароль
     </div>
     <form class="auth-form">
-      <q-input
-        v-model="email"
-        outlined
-        type="email"
-        label="Email"
-        class="auth-input"
-        :class="{error: errorEmail}"
-        @focus="onFocus"
-      />
       <q-input
         v-model="password"
         outlined
@@ -20,7 +11,7 @@
         label="Пароль"
         class="auth-input"
         autocomplete="on"
-        :class="{error: errorPass}"
+        :error="errorPass"
         @focus="onFocus"
       >
         <template v-slot:append>
@@ -33,63 +24,80 @@
         </template>
       </q-input>
 
+      <q-input
+        v-model="checkPassword"
+        outlined
+        :type="isPwdCheck ? 'password' : 'text'"
+        label="Повторите Пароль"
+        class="auth-input"
+        autocomplete="on"
+        :error="errorPass"
+        @focus="onFocus"
+      >
+        <template v-slot:append>
+          <q-icon
+            :name="isPwdCheck ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            autocomplete="on"
+            @click="isPwdCheck = !isPwdCheck"
+          />
+        </template>
+      </q-input>
+
       <q-btn
         unelevated
         color="primary"
-        label="Войти"
+        label="Изменить"
         class="auth-btn"
-        @click="auth"
+        @click="change"
       />
     </form>
-    <div
-      class="auth-forgot"
-      @click="$emit('onForgot')"
-    >
-      Забыли пароль?
-    </div>
   </q-card>
 </template>
 
 <script>
-import Module from 'Auth/module';
-import * as api from 'Auth/api';
-import to from 'await-to-js';
+import Module from 'PageChangePass/module';
 
 export default {
   name: 'VueCardAuth',
   data: () => ({
-    email: null,
+    checkPassword: null,
     password: null,
     isPwd: true,
+    isPwdCheck: true,
     errorPass: false,
-    errorEmail: false,
   }),
   methods: {
-    async auth() {
+    /**
+    * Метод аторизации
+    */
+    change() {
       const module = new Module();
-
-      const [err, res] = await to(api.auth(this.email, this.password));
-
-      if (err) {
+      if (!this.password || this.password !== this.checkPassword) {
         this.errorPass = true;
-        this.errorEmail = true;
-
         module.$$gemit('notify', {
           type: 'negative',
-          text: 'Неправильно введен пароль или enail',
+          text: 'Пароли не совподают',
           time: 1500,
         });
-      } else {
-        console.log(res);
-        this.module.$$rout({
-          path: '/main',
-        });
+        return;
       }
+      module.$$gemit('notify', {
+        type: 'positive',
+        text: 'Пароль Успешно изменен',
+        time: 1500,
+      });
+
+      module.$$rout({
+        path: '/auth',
+      });
     },
 
+    /**
+    * Фокус на инпут, при фокусе сбрасываем влидацию
+    */
     onFocus() {
       this.errorPass = false;
-      this.errorEmail = false;
     },
   },
 };
@@ -120,7 +128,7 @@ export default {
     }
 
     &-input {
-      margin-top: 40px;
+      margin-top: 20px;
       margin-left: 30px;
       width: 420px;
     }

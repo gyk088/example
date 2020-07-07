@@ -1,18 +1,18 @@
 import Onedeck from 'onedeck';
-import App from 'InsurancePage/App.vue';
+import App from 'PageAddPartner/App.vue';
 import Vue from 'vue';
 
 /**
- * @moduel InsurancePage
+ * @module PageAddPartner
  */
-export default class InsurancePage extends Onedeck.Module {
+export default class PageAddPartner extends Onedeck.Module {
   init() {
     this.VueApp = new Vue(App);
   }
 
   destroy() {
-    this.$$offAll();
     this.VueApp.$destroy();
     document.getElementById('content').innerHTML = '';
+    this.$$offAll();
   }
 }

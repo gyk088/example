@@ -5,6 +5,7 @@ import Quasar, {
   QInput,
   QCard,
   QIcon,
+  QSelect,
 } from 'quasar';
 
 export default () => Vue.use(Quasar, {
@@ -19,5 +20,6 @@ export default () => Vue.use(Quasar, {
     QBtn,
     QInput,
     QIcon,
+    QSelect,
   },
 });

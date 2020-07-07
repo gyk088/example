@@ -1,11 +1,11 @@
 import Onedeck from 'onedeck';
-import App from 'MainPagePartner/App.vue';
+import App from 'PagePartnerMain/App.vue';
 import Vue from 'vue';
 
 /**
- * @moduel MainPagePartner
+ * @moduel PagePartnerMain
  */
-export default class MainPagePartner extends Onedeck.Module {
+export default class PagePartnerMain extends Onedeck.Module {
   init() {
     this.VueApp = new Vue(App);
   }

@@ -38,12 +38,7 @@ body {
 	}
 }
 
-.error {
-	.q-field__control:before {
-		border: solid 1px red;
-	}
 
-	.q-field__label {
-		color: red
-	}
-}
+.embed-partners-tabel .webix_hcell.webix_ss_filter {
+	padding: 5 4px;
+  }

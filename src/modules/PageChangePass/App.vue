@@ -1,17 +1,9 @@
 <template>
   <div id="root">
-    <div class="auth-background">
-      <card-forgot
-        v-if="forgot"
-        @onForgot="isForgot"
-      />
-      <card-auth
-        v-else
-        @onForgot="isForgot"
-      />
-
+    <div class="change-pass-background">
+      <card />
       <div
-        class="auth-logo"
+        class="change-pass-logo"
         v-html="logo"
       />
     </div>
@@ -20,30 +12,22 @@
 
 <script>
 import logo from 'Images/icon/logo-white.svg';
-
-import CardAuth from 'Auth/components/CardAuth.vue';
-import CardForgot from 'Auth/components/CardForgot.vue';
+import Card from 'PageChangePass/components/Card.vue';
 
 export default {
   el: '#root',
-  name: 'VueAuth',
+  name: 'VuePageChangePass',
   components: {
-    CardAuth, CardForgot,
+    Card,
   },
   data: () => ({
     logo,
-    forgot: false,
   }),
-  methods: {
-    isForgot() {
-      this.forgot = !this.forgot;
-    },
-  },
 };
 </script>
 
 <style lang="scss" scoped>
-.auth {
+.change-pass {
     &-background {
       background-image: url("../../images/background.jpg");
       height: 100vh;

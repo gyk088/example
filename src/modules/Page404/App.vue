@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Module from '404/module';
+import Module from 'Page404/module';
 
 export default {
   el: '#root',

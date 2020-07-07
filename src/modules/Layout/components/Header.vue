@@ -57,6 +57,8 @@ export default {
     ...mapMutations(['setState']),
 
     exit() {
+      localStorage.removeItem('authentication_token');
+      localStorage.removeItem('refresh_token');
       this.module.$$rout({
         path: '/auth',
       });

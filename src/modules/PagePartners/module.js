@@ -1,18 +1,18 @@
 import Onedeck from 'onedeck';
-import App from 'MainPageAdmin/App.vue';
+import App from 'PagePartners/App.vue';
 import Vue from 'vue';
 
 /**
- * @moduel MainPageAdmin
+ * @module PagePartners
  */
-export default class MainPageAdmin extends Onedeck.Module {
+export default class PagePartners extends Onedeck.Module {
   init() {
     this.VueApp = new Vue(App);
   }
 
   destroy() {
-    this.$$offAll();
     this.VueApp.$destroy();
     document.getElementById('content').innerHTML = '';
+    this.$$offAll();
   }
 }

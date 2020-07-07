@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import Module from 'Auth/module';
+import Module from 'PageAuth/module';
 
 export default {
   name: 'VueCardForgot',

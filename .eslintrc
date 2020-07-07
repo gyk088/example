@@ -29,6 +29,7 @@
     "globals": {
         "API_PREFIX": "readonly",
         "ROOT_PATH": "readonly",
-        "VERSION": "readonly"
+        "VERSION": "readonly",
+        "$$": "readonly"
     }
 }

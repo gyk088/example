@@ -19,10 +19,13 @@ export default {
   import: async (module) => await import(`./modules/${module}/module`),
   modules: {
     auth: {
-      module: 'Auth',
+      module: 'PageAuth',
+    },
+    changepass: {
+      module: 'PageChangePass',
     },
     404: {
-      module: '404',
+      module: 'Page404',
     },
     globalnotification: {
       global: true,
@@ -33,54 +36,63 @@ export default {
       module: 'Loader',
     },
     main: {
-      module: 'MainPageAdmin',
+      module: 'PageAdminMain',
       layout: 'Layout',
       icon: menu1,
       title: 'Главная Адимина',
       inMenu: true,
     },
-    mainPartner: {
-      module: 'MainPagePartner',
+    mainpartner: {
+      module: 'PagePartnerMain',
       layout: 'Layout',
       icon: menu1,
       title: 'Главная Партнёра',
       inMenu: true,
     },
     insurance: {
-      module: 'InsurancePage',
+      module: 'PageInsurance',
       layout: 'Layout',
       inMenu: false,
     },
     sales: {
-      module: 'MainPageAdmin',
+      module: 'PageAdminMain',
       layout: 'Layout',
       icon: menu2,
       title: 'Продажа СП',
       inMenu: true,
     },
     events: {
-      module: 'MainPageAdmin',
+      module: 'PageAdminMain',
       layout: 'Layout',
       icon: menu3,
       title: 'Страховое событие',
       inMenu: true,
     },
     partners: {
-      module: 'MainPageAdmin',
+      module: 'PagePartners',
       layout: 'Layout',
       icon: menu4,
       title: 'Партнеры',
       inMenu: true,
+      embed: {
+        table: {
+          module: 'EmbedPartnersTbl',
+        },
+      },
+    },
+    addpartner: {
+      module: 'PageAddPartner',
+      layout: 'Layout',
     },
     faq: {
-      module: 'MainPageAdmin',
+      module: 'PageAdminMain',
       layout: 'Layout',
       icon: menu5,
       title: 'FAQ',
       inMenu: true,
     },
     settings: {
-      module: 'MainPageAdmin',
+      module: 'PageAdminMain',
       layout: 'Layout',
       icon: menu6,
       title: 'Настройки',
