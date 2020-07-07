@@ -10,6 +10,10 @@ export default class Layout extends Onedeck.Module {
     this.VueApp = new Vue(App);
   }
 
+  dispatcher(path) {
+    console.log(path);
+  }
+
   mounted(currentModule) {
     this.VueApp.currentPage = currentModule.name;
   }

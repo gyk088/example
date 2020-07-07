@@ -44,25 +44,20 @@ module.exports = env => {
     }
 
     const rules = []
-    // if (env.production || env.development) {
-    //     rules.push({
-    //         enforce: "pre",
-    //         test: /\.(js|vue|.jsx)$/,
-    //         loader: "eslint-loader",
-    //         exclude: /node_modules/
-    //     })
-    // }
-
-    const optimization = {
-        minimize: false
+    if (env.production || env.development) {
+        rules.push({
+            enforce: "pre",
+            test: /\.(js|vue|.jsx)$/,
+            loader: "eslint-loader",
+            exclude: /node_modules/
+        })
     }
+
     if (env.production) {
-        optimization.minimize = true
         console.info(`\x1b[32m Start Build Production\x1b[37m`)
     }
 
     if (env.development) {
-        optimization.minimize = true
         console.info(`\x1b[32m Start Build Development\x1b[37m`)
     }
 

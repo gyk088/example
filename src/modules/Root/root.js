@@ -28,9 +28,9 @@ export default class Root extends Onedeck.RootModule {
     });
   }
 
-  dispatcher() {
+  dispatcher(path) {
     this.Loader.show();
-    this.checkAuth();
+    this.checkAuth(path);
   }
 
   mounted() {
@@ -40,8 +40,11 @@ export default class Root extends Onedeck.RootModule {
   /**
    * Проверка авторизации
   */
-  checkAuth() {
-    if (!LocalStorage.getItem('authentication_token')) {
+  checkAuth(path) {
+    if (
+      !LocalStorage.getItem('authentication_token')
+      && path[0] !== 'changepass'
+    ) {
       this.$$rout({
         path: '/auth',
       });
