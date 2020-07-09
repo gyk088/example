@@ -1,13 +1,16 @@
 <template>
   <div id="content">
-    <div class="page-partners">
+    <div
+      id="PagePartner"
+      class="page-partners"
+    >
       <Header title="Партнеры">
         <template #end>
           <q-btn
             unelevated
             rounded
             color="primary"
-            label="Добавить партенра"
+            label="Добавить партнера"
             class="page-partners-btn"
             @click="addPartner"
           />

@@ -1,5 +1,8 @@
 <template>
-  <div class="page-partners-switch">
+  <div
+    id="PagePartnersSwitch"
+    class="page-partners-switch"
+  >
     <div
       class="page-partners-switch-item"
       @click="onClickSwitch('active')"

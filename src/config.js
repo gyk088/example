@@ -39,7 +39,7 @@ export default {
       module: 'PageAdminMain',
       layout: 'Layout',
       icon: menu1,
-      title: 'Главная Адимина',
+      title: 'Главная Админа',
       inMenu: true,
     },
     mainpartner: {

@@ -2,6 +2,7 @@
   <transition name="fade">
     <div
       v-if="isShowMenu"
+      id="MenuBlock"
       class="layout-menu"
     >
       <div
@@ -35,15 +36,13 @@ export default {
   props: {
     currentPage: String,
   },
-  data: () => ({
-    module: new Module(),
-  }),
   computed: {
     ...mapState(['isShowMenu', 'menu']),
   },
   methods: {
     goToUrl(url) {
-      this.module.$$rout({
+      const module = new Module();
+      module.$$rout({
         path: url,
       });
     },

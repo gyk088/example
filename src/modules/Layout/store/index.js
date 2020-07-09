@@ -15,6 +15,7 @@ export default new Vuex.Store({
     setState(state, patch = { name: '', value: null }) {
       Vue.set(state, patch.name, patch.value);
     },
+
     setMenu(state) {
       const module = new Module();
       const menu = [];

@@ -44,6 +44,8 @@ export default class TableUI {
       select: 'row',
       css: 'embed-partners-tabel',
       height: 650,
+      // для того чтобы не появлялся скролл отнимаем 2 px
+      width: document.getElementById('PagePartnersSwitch').offsetWidth - 2,
       selected: true,
       columns: this.columns(),
     };

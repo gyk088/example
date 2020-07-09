@@ -3,7 +3,7 @@
     <div class="layout-header-start">
       <div
         class="layout-header-start-menu-icon"
-        @click="setState({ name: 'isShowMenu', value: !isShowMenu })"
+        @click="showMenu()"
         v-html="isShowMenu ? iconMenuOpen : iconMenuClose"
       />
       <div
@@ -48,7 +48,6 @@ export default {
     iconLogo: logo,
     iconAva: ava,
     iconExit: exit,
-    module: new Module(),
   }),
   computed: {
     ...mapState(['isShowMenu']),
@@ -59,21 +58,31 @@ export default {
     exit() {
       localStorage.removeItem('authentication_token');
       localStorage.removeItem('refresh_token');
-      this.module.$$rout({
+
+      const module = new Module();
+      module.$$rout({
         path: '/auth',
       });
     },
 
     home() {
-      this.module.$$rout({
+      const module = new Module();
+      module.$$rout({
         path: '/main',
       });
     },
 
     user() {
-      this.module.$$gemit('notify', {
+      const module = new Module();
+      module.$$gemit('notify', {
         text: 'User',
       });
+    },
+
+    showMenu() {
+      const module = new Module();
+      module.$$emit('onShowMenu', !this.isShowMenu);
+      this.setState({ name: 'isShowMenu', value: !this.isShowMenu });
     },
   },
 };

@@ -8,10 +8,13 @@ import Vue from 'vue';
 export default class Layout extends Onedeck.Module {
   init() {
     this.VueApp = new Vue(App);
+    this.eventHandler();
   }
 
-  dispatcher(path) {
-    console.log(path);
+  eventHandler() {
+    // Заглушка для события onShowMenu
+    // для того чтобы другие модули могли слушать это событие
+    this.$$on('onShowMenu', () => { });
   }
 
   mounted(currentModule) {
