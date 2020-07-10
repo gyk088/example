@@ -16,6 +16,7 @@
           color="primary"
           label="Сохранить"
           class="add-partner-page-footer-btn"
+          @click="invite"
         />
       </div>
     </div>
@@ -27,16 +28,20 @@ import Header from 'Shared/PageHeader.vue';
 import Module from 'PageAddPartner/module';
 import AddressBlock from 'PageAddPartner/components/AddressBlock.vue';
 import ContactBlock from 'PageAddPartner/components/ContactBlock.vue';
+import { mapActions } from 'vuex';
+import store from 'PageAddPartner/store';
 
 export default {
   el: '#content',
   name: 'VuePageAddPartner',
+  store,
   components: {
     Header,
     AddressBlock,
     ContactBlock,
   },
   methods: {
+    ...mapActions(['invite']),
     onBack() {
       const module = new Module();
 

@@ -52,9 +52,10 @@
 
 <script>
 import Module from 'PageAuth/module';
-import * as api from 'PageAuth/api';
+import api from 'API';
 import { ERR_PASS } from 'PageAuth/const';
 import to from 'await-to-js';
+import utils from 'Utils';
 
 export default {
   name: 'VueCardAuth',
@@ -72,7 +73,12 @@ export default {
     async auth() {
       const module = new Module();
 
-      const [err, res] = await to(api.auth(this.email, this.password));
+      if (!utils.validate.email(this.email)) {
+        this.errorEmail = true;
+        return;
+      }
+
+      const [err, res] = await to(api.auth.postAuth(this.email, this.password));
 
       if (err) {
         this.errorHendler(err
@@ -81,8 +87,8 @@ export default {
           ? err.response.data.error
           : null);
       } else {
-        localStorage.setItem('authentication_token', res.data.authentication_token);
-        localStorage.setItem('refresh_token', res.data.refresh_token);
+        localStorage.setItem('authentication_token', utils.cipher.encode(res.data.authentication_token));
+        localStorage.setItem('refresh_token', utils.cipher.encode(res.data.refresh_token));
         module.$$rout({
           path: '/main',
         });

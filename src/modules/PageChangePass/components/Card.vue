@@ -57,9 +57,14 @@
 
 <script>
 import Module from 'PageChangePass/module';
+import api from 'API';
+import to from 'await-to-js';
 
 export default {
   name: 'VueCardAuth',
+  props: {
+    hash: String,
+  },
   data: () => ({
     checkPassword: null,
     password: null,
@@ -71,7 +76,7 @@ export default {
     /**
     * Метод аторизации
     */
-    change() {
+    async change() {
       const module = new Module();
       if (!this.password || this.password !== this.checkPassword) {
         this.errorPass = true;
@@ -82,15 +87,26 @@ export default {
         });
         return;
       }
-      module.$$gemit('notify', {
-        type: 'positive',
-        text: 'Пароль Успешно изменен',
-        time: 1500,
-      });
 
-      module.$$rout({
-        path: '/auth',
-      });
+      // eslint-disable-next-line
+      const [err, res] = await to(api.auth.postChagePass(this.hash, this.password));
+      if (err) {
+        module.$$gemit('notify', {
+          type: 'error',
+          text: 'Что-то пошло не так',
+          time: 1500,
+        });
+      } else {
+        module.$$gemit('notify', {
+          type: 'positive',
+          text: 'Пароль Успешно изменен',
+          time: 1500,
+        });
+
+        module.$$rout({
+          path: '/auth',
+        });
+      }
     },
 
     /**

@@ -15,4 +15,9 @@ export default class PagePartnerMain extends Onedeck.Module {
     this.VueApp.$destroy();
     document.getElementById('content').innerHTML = '';
   }
+
+  dispatcher(path, state) {
+    console.log(path);
+    console.log(state);
+  }
 }

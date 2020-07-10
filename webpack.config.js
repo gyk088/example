@@ -36,6 +36,8 @@ const PATHS = {
     dist: path.resolve(__dirname, "dist/"),
     images: path.resolve(__dirname, "src/images/"),
     shared: path.resolve(__dirname, "src/shared/"),
+    api: path.resolve(__dirname, "src/api/"),
+    utils: path.resolve(__dirname, "src/utils/"),
 }
 
 module.exports = env => {
@@ -169,6 +171,8 @@ module.exports = env => {
             alias: {
                 Shared: PATHS.shared,
                 Images: PATHS.images,
+                API: PATHS.api,
+                Utils: PATHS.utils,
                 ...modules,
             }
         },

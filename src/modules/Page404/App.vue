@@ -6,7 +6,7 @@
           size="22px"
           class="q-px-xl q-py-xs"
           color="primary"
-          label="404 Page not found, go to the main page"
+          label="404 страница не найдена, нажмите чтобы перейти на главную"
           icon-right="sentiment_very_dissatisfied"
           @click="home"
         />

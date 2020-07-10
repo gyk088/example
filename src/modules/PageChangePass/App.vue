@@ -1,7 +1,9 @@
 <template>
   <div id="root">
     <div class="change-pass-background">
-      <card />
+      <card
+        :hash="hash"
+      />
       <div
         class="change-pass-logo"
         v-html="logo"
@@ -22,6 +24,7 @@ export default {
   },
   data: () => ({
     logo,
+    hash: null,
   }),
 };
 </script>

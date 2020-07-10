@@ -7,31 +7,31 @@ export default class TableUI {
   columns() {
     return [
       {
-        id: 'test1', header: ['Юр. форма организации', { content: 'textFilter' }], sort: 'string', width: 180,
+        id: 'test1', header: ['Юр. форма организации', { content: 'textFilter' }], sort: 'string', minWidth: 180, fillspace: true,
       },
       {
-        id: 'test2', header: ['Название', { content: 'textFilter' }], sort: 'string', width: 160,
+        id: 'test2', header: ['Название', { content: 'textFilter' }], sort: 'string', minWidth: 160, fillspace: true,
       },
       {
-        id: 'test3', header: ['Юр. адрес', { content: 'textFilter' }], sort: 'string', width: 160,
+        id: 'test3', header: ['Юр. адрес', { content: 'textFilter' }], sort: 'string', minWidth: 160, fillspace: true,
       },
       {
-        id: 'test4', header: ['Почтовый адрес', { content: 'textFilter' }], sort: 'string', width: 160, fillspace: true,
+        id: 'test4', header: ['Почтовый адрес', { content: 'textFilter' }], sort: 'string', minWidth: 160, fillspace: true,
       },
       {
-        id: 'test5', header: ['ИНН', { content: 'textFilter' }], sort: 'string', width: 160,
+        id: 'test5', header: ['ИНН', { content: 'textFilter' }], sort: 'string', minWidth: 160, fillspace: true,
       },
       {
-        id: 'test6', header: ['КПП', { content: 'textFilter' }], sort: 'string', width: 160,
+        id: 'test6', header: ['КПП', { content: 'textFilter' }], sort: 'string', minWidth: 160, fillspace: true,
       },
       {
-        id: 'test7', header: ['ФИО контктное лицо', { content: 'textFilter' }], sort: 'string', width: 160,
+        id: 'test7', header: ['ФИО контктное лицо', { content: 'textFilter' }], sort: 'string', minWidth: 160, fillspace: true,
       },
       {
-        id: 'test8', header: ['Номер телефона', { content: 'textFilter' }], sort: 'string', width: 160,
+        id: 'test8', header: ['Номер телефона', { content: 'textFilter' }], sort: 'string', minWidth: 160, fillspace: true,
       },
       {
-        id: 'test9', header: ['Email', { content: 'textFilter' }], sort: 'string', width: 160,
+        id: 'test9', header: ['Email', { content: 'textFilter' }], sort: 'string', minWidth: 160, fillspace: true,
       },
     ];
   }
