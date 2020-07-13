@@ -26,9 +26,10 @@ export default {
   }),
   methods: {
     home() {
-      this.module.$$rout({
-        path: '/main',
-      });
+      console.log(Module)
+      // Module.$$rout({
+      //   path: '/main',
+      // });
     },
   },
 };
